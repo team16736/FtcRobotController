@@ -51,6 +51,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
+
 @TeleOp(name = "Sensor: MR Color", group = "Sensor")
 @Disabled
 public class SensorMRColor extends LinearOpMode {
@@ -107,7 +108,7 @@ public class SensorMRColor extends LinearOpMode {
       bPrevState = bCurrState;
 
       // convert the RGB values to HSV values.
-      Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
+      //Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);
 
       // send the info back to driver station using telemetry function.
       telemetry.addData("LED", bLedOn ? "On" : "Off");

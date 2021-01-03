@@ -33,10 +33,10 @@ public class ConfigConstants {
     //Wobble Gripper
     public static final String ARM_SERVO = "armServo";
     public static final String GRIPPER_SERVO = "gripper";
+    public static final String DISTANCE_SERVO = "distance_sensor_servo";
 
     //Color Sensors
-    public static final String TOP_COLOR = "sensor_color_distance1";
-    public static final String BOTTOM_COLOR = "sensor_color_distance2";
+    public static final String DONUT_COUNTER = "donut_counter";
 
     public static final String SHOOTER = "Shooter";
     public static final String INTAKE =  "Intake";

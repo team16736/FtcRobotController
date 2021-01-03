@@ -127,27 +127,27 @@ public class DriveWheelActions {
 
     //This methods is meant for AUTONOMOUS
     public void setMotorDirection_Forward() {
-        left_front.setDirection(MotorConstants.FORWARD);
-        left_back.setDirection(MotorConstants.FORWARD);
-
-        right_front.setDirection(MotorConstants.REVERSE);
-        right_back.setDirection(MotorConstants.REVERSE);
-        //fixed
-    }
-
-    //This methods is meant for AUTONOMOUS
-    public void setMotorDirection_Reverse() {
         left_front.setDirection(MotorConstants.REVERSE);
         left_back.setDirection(MotorConstants.REVERSE);
 
-        right_front.setDirection(MotorConstants.FORWARD);
+        right_front.setDirection(MotorConstants.REVERSE);
         right_back.setDirection(MotorConstants.FORWARD);
         //fixed
     }
 
     //This methods is meant for AUTONOMOUS
-    public void setMotorDirection_StrafeLeft() {
+    public void setMotorDirection_Reverse() {
         left_front.setDirection(MotorConstants.FORWARD);
+        left_back.setDirection(MotorConstants.FORWARD);
+
+        right_front.setDirection(MotorConstants.FORWARD);
+        right_back.setDirection(MotorConstants.REVERSE);
+        //fixed
+    }
+
+    //This methods is meant for AUTONOMOUS
+    public void setMotorDirection_StrafeLeft() {
+        left_front.setDirection(MotorConstants.REVERSE);
         left_back.setDirection(MotorConstants.FORWARD);
 
         right_front.setDirection(MotorConstants.FORWARD);
@@ -162,7 +162,7 @@ public class DriveWheelActions {
         left_back.setDirection(MotorConstants.REVERSE);
 
         right_front.setDirection(MotorConstants.REVERSE);
-        right_back.setDirection(MotorConstants.FORWARD);
+        right_back.setDirection(MotorConstants.REVERSE);
     }
 
     //This methods is meant for AUTONOMOUS
@@ -211,10 +211,17 @@ public class DriveWheelActions {
 
             left_front.setPower(speed);  //Speed needed for hooks (this is our normal speed)
         }
+        telemetry.addData("strafing right", 3);
+        telemetry.update();
+        opMode.sleep((long)(1000 * drivingTime)); //Make the opMode wait - while it is driving
+    }
+    public void driveByTimeFrontOnly(LinearOpMode opMode, double speed, double drivingTime) {
+
+        left_back.setPower(speed);
+        right_back.setPower(speed);
 
         opMode.sleep((long)(1000 * drivingTime)); //Make the opMode wait - while it is driving
     }
-
 
 
     /**

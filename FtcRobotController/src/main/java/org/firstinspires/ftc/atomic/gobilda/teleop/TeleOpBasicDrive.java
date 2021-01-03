@@ -8,15 +8,18 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.FlickerPositionerActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.DriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.WobbleGripperActions;
 
 @TeleOp(name = "TeleOp Shooting", group = "Linear Opmode")
 public class TeleOpBasicDrive extends LinearOpMode {
 
     private DriveWheelActions driveActions = null;
     private FlickerPositionerActions flickerPositionerActions = null;
+    private WobbleGripperActions wobbleGripperActions = null;
     //private IntakeShooterActions intakeShooterActions = null;/////
     private DcMotor intake = null;
     private DcMotor Shooter = null;
+
 
 
     @Override
@@ -24,6 +27,7 @@ public class TeleOpBasicDrive extends LinearOpMode {
 
         driveActions = new DriveWheelActions(telemetry, hardwareMap);
         flickerPositionerActions = new FlickerPositionerActions(telemetry, hardwareMap);
+        wobbleGripperActions = new WobbleGripperActions(telemetry, hardwareMap);
         //intakeShooterActions = new IntakeShooterActions(telemetry,hardwareMap);/////
 
         intake = hardwareMap.get(DcMotor.class,"intake");
@@ -50,23 +54,37 @@ public class TeleOpBasicDrive extends LinearOpMode {
 
 
             flickerPositionerActions.flipper_Forward_Backward(
-                    gamepad1.left_bumper,       //open grabber
-                    gamepad1.right_bumper);     //close grabber
+                    gamepad2.left_bumper,       //open grabber
+                    gamepad2.right_bumper);     //close grabber
 
             flickerPositionerActions.positioner_Forward_Backward(
-                    gamepad1.x,                 //
-                    gamepad1.y                  //
-            );
+                    gamepad2.x,                 //
+                    gamepad2.y);                  //
+            wobbleGripperActions.armUpDown(
+                    gamepad1.b,
+                    gamepad1.a);
+            boolean right_trigger = false;
+            boolean left_trigger = false;
+            if (gamepad1.left_trigger > 0.2)
+                left_trigger = true;
+            if (gamepad1.right_trigger > 0.2)
+                right_trigger = true;
+            wobbleGripperActions.gripperOpenClose(
+                    left_trigger,
+                    right_trigger);
+            flickerPositionerActions.reset_Flicker_Positioner(
+                    gamepad2.a);
+
 
 
 
 
             double IntakePower = 0;
-            if(gamepad1.dpad_up){IntakePower = 0.65;}
+            if(gamepad2.a){IntakePower = 1.0;}
             intake.setPower(IntakePower);
 
             double ShooterPower = 0;
-            if(gamepad1.dpad_down){ShooterPower = 0.4;}
+            if(gamepad2.b){ShooterPower = 0.4;}
             Shooter.setPower(ShooterPower);
 
             telemetry.update();

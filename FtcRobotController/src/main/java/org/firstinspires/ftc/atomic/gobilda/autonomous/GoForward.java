@@ -21,10 +21,9 @@ public class GoForward extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        driveActions.applySensorSpeed = true;
         // Step 1:  Drive Forward for 1 Second
         driveActions.setMotorDirection_Forward();
-        driveActions.driveByTime(this, 0.35, 0.25);//changed
+        driveActions.driveByTimeFrontOnly(this, 0.6, 1.2);//changed
 
         sleep(2000); //wait for 2 seconds
     }

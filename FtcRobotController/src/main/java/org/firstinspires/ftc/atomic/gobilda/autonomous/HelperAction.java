@@ -28,7 +28,7 @@ public abstract class HelperAction extends LinearOpMode {
     public void drive_ForwardAndStop(DriveWheelActions driveWheelActions, double speed, double drivingTime) {
         
         driveWheelActions.setMotorDirection_Forward();
-        driveWheelActions.driveByTime(this, speed, drivingTime);
+        driveWheelActions.driveByTimeFrontOnly(this, speed, drivingTime);
         driveWheelActions.stop();
     }
 

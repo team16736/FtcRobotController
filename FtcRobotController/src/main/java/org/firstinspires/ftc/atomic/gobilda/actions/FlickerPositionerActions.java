@@ -14,8 +14,8 @@ public class FlickerPositionerActions {
     public Servo flicker;
     public Servo positioner;
 
-    private double flicker_position = 0.5;
-    private double positioner_position = 0.5;
+    private double flicker_position = 0.8;
+    private double positioner_position = 0.8;
 
     // Constructor
     public FlickerPositionerActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
@@ -64,12 +64,21 @@ public class FlickerPositionerActions {
 
         } else if (backward) {  //backward moves arm outwards (taps the skystone)
 
-            positioner_position = 0;
+            positioner_position = 0.5;
             telemetry.addData("Left Hook - UP Position y: ", positioner_position);
         }
 
         positioner.setPosition(positioner_position);
         telemetry.update();
+    }
+
+    public void reset_Flicker_Positioner(boolean reset) {
+        if (reset == true){
+            positioner_position = 0.8;
+            flicker_position = 0.8;
+            positioner.setPosition(positioner_position);
+            flicker.setPosition(flicker_position);
+        }
     }
 
 
